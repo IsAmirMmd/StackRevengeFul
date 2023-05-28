@@ -1,30 +1,22 @@
 package org.example;
-
-
 import java.util.LinkedList;
-
 public class RevengefulStack<T> {
     private LinkedList<T> stack;
     private int capacity;
-
     public RevengefulStack(int initialCapacity) {
         stack = new LinkedList<>();
         capacity = initialCapacity;
     }
 
     public void push(T item) {
-//        System.out.println("cap : "+capacity);
-//        System.out.println("size : "+stack.size());
         int temp = capacity;
-        capacity /= 2;
-        if (stack.size() >= capacity) {
-//            System.out.println("cap : "+temp);
-//            System.out.println("size : "+stack.size());
+        if (stack.size() >= capacity/2) {
             if (temp == stack.size()) {
                 throw new RuntimeException("I will no longer bow down to you!");
             }
             throw new RuntimeException("No. I won't let you.");
         }
+        capacity /= 2;
         stack.push(item);
     }
 
@@ -52,7 +44,7 @@ public class RevengefulStack<T> {
         capacity /= 2;
 
         for (T item : stack) {
-            System.out.println(item);
+            System.out.print(item + " ");
         }
     }
 
@@ -89,8 +81,8 @@ public class RevengefulStack<T> {
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
-
+        System.out.println("** print result **");
         stack.printStack();
-//        System.out.println("Capacity = " + stack.getCapacity() + ", Size = " + stack.getSize());
+        System.out.println("\n"+"Capacity = " + stack.getCapacity() + ", Size = " + stack.getSize());
     }
 }
